@@ -27,3 +27,9 @@ clean_results.py is used to clean the json files generated after LLM has generat
 
 to calculate pass@1 metric we can use the json file that is generated and run on any LLM to see which all evaluations are failing 
 
+Results
+<img width="427" height="202" alt="image" src="https://github.com/user-attachments/assets/51ed7b23-33db-4823-9f77-fa7e36c8899b" />
+
+<img width="333" height="260" alt="image" src="https://github.com/user-attachments/assets/110945d1-f5ab-49a3-b375-5cc883dc5db0" />
+
+
