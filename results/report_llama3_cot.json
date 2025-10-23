@@ -6,52 +6,42 @@
     {
       "task_id": "HumanEval/0",
       "passed": true,
-      "error": "unterminated string literal (detected at line 8) (<string>, line 8)"
     },
     {
       "task_id": "HumanEval/5",
       "passed": true,
-      "error": "invalid syntax (<string>, line 1)"
     },
     {
       "task_id": "HumanEval/12",
       "passed": false,
-      "error": "unterminated string literal (detected at line 1) (<string>, line 1)"
     },
     {
       "task_id": "HumanEval/19",
       "passed": true,
-      "error": "unterminated string literal (detected at line 3) (<string>, line 3)"
     },
     {
       "task_id": "HumanEval/23",
       "passed": true,
-      "error": "unterminated string literal (detected at line 20) (<string>, line 20)"
     },
     {
       "task_id": "HumanEval/30",
       "passed": false,
-      "error": "invalid syntax (<string>, line 1)"
     },
     {
       "task_id": "HumanEval/45",
       "passed": false,
-      "error": "unterminated string literal (detected at line 1) (<string>, line 1)"
     },
     {
       "task_id": "HumanEval/55",
       "passed": true,
-      "error": "unterminated string literal (detected at line 3) (<string>, line 3)"
     },
     {
       "task_id": "HumanEval/60",
       "passed": false,
-      "error": "unterminated string literal (detected at line 1) (<string>, line 1)"
     },
     {
       "task_id": "HumanEval/100",
       "passed": true,
-      "error": "invalid syntax (<string>, line 1)"
     }
   ]
 }
