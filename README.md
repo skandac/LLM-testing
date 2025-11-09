@@ -1,37 +1,120 @@
-tasks.jsonl is the dataset that i have extracted from humaneval github repo (https://github.com/openai/human-eval)
+LLM Code Generation and Test Analysis
+This repository contains two main projects:
 
-generate_llm.py contains the main code which uses the task.json and input prompt to get the output for llama model
-you may need to install the ollama locally before running this file 
+Solution Generation: Scripts to generate Python solutions from the HumanEval dataset using various LLMs (Llama, Deepseek).
 
-change the prompts and file names according to the user standards 
-you can use command "python generate_llm.py" to run the above code and generate json files 
+Test Coverage Analysis: Scripts to measure test coverage, use an LLM to improve it, and perform fault detection.
 
-generate_solutions.py contains the main code to generate the output jsonl file for deepseek model 
+Part 1: Solution Generation (Exercise 1)
+This section details the process of generating the solution files from the HumanEval dataset.
 
-python generate_solutions.py \                                                    
+1.1 Source Data
+tasks.jsonl: The dataset extracted from the HumanEval GitHub repo.
+
+1.2 Solution Generation Scripts
+Llama (Local)
+
+generate_llm.py: Main code to generate output from a local Llama model using ollama.
+
+Usage:
+
+You may need to install ollama locally before running this file.
+
+Change the prompts and file names in the script as needed.
+
+Run: python generate_llm.py
+
+Deepseek (Hugging Face)
+
+generate_solutions.py: Main code to generate an output .jsonl file using a Deepseek model from Hugging Face.
+
+Usage:
+
+Bash
+
+python generate_solutions.py \
     --model_name "deepseek-ai/deepseek-coder-1.3b-instruct" \
     --tasks_file "tasks.jsonl" \
-    --output_file "deepseek_cot_output.jsonl" \
+    --output_file "results/deepseek_cot_output.jsonl" \
     --prompt_style "cot"
+You can change the --prompt_style to "self-debug" or other strategies.
 
-you can change the above for self-debug or cot style prompting strategies 
+Note: I used the 1.3B parameter model due to laptop compute capacity. The output .jsonl files are stored in the /results/ directory.
 
-Note: I have used deepseek 1.3B parameter lower model cause of laptop capacity
+1.3 Utility Scripts
+clean_results.py: Cleans the generated .jsonl files by removing extra text before the code blocks to prevent syntax errors.
 
-The output jsonl files will be stored in /result/ dir 
+check.py: A utility to check if the generated JSON files have proper code solutions for the given prompts.
 
-check.py can be used to check if the json files have the proper code solutions to the prompt given that we have provided 
-to check if json file is generated properly
+1.4 Results (pass@1)
+The pass@1 metric was calculated by running the generated solutions against the benchmark tests.
 
-clean_results.py is used to clean the json files generated after LLM has generated the output for any additional lines of text before code to prevent syntax errors 
+Part 2: Test Coverage & Fault Detection Analysis (Exercise 2)
+This section details the process of analyzing the test coverage of the LLM-generated solutions and improving it.
 
-to calculate pass@1 metric we can use the json file that is generated and run on any LLM to see which all evaluations are failing 
+2.1 Setup
+Create a Virtual Environment (Recommended):
 
-Results
+Bash
 
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+Install Dependencies: Create a requirements.txt file with the content below and run pip install -r requirements.txt.
 
-<img width="427" height="202" alt="image" src="https://github.com/user-attachments/assets/51ed7b23-33db-4823-9f77-fa7e36c8899b" />
+requirements.txt:
 
-<img width="333" height="260" alt="image" src="https://github.com/user-attachments/assets/110945d1-f5ab-49a3-b375-5cc883dc5db0" />
+pytest
+pytest-cov
+pandas
+tabulate
+Prepare Solution File: This analysis requires a single solution file. Rename your chosen LLM-generated output file (e.g., results/deepseek_cot_output.jsonl) to completions.jsonl and place it in the root directory.
 
+2.2 Step 1: Baseline Coverage (Assignment Part 1)
+This script runs the benchmark tests (from tasks.jsonl) against the LLM solutions (from completions.jsonl) and generates the baseline coverage table.
 
+Run Command:
+
+Bash
+
+python run_coverage.py
+This will output the Markdown table required for the report.
+
+2.3 Step 2: Coverage Improvement (Assignment Part 2)
+This script runs the benchmark tests plus new LLM-generated tests (from the new_tests_*.py files) to measure the improvement in coverage.
+
+Run Command for HumanEval/12:
+
+Bash
+
+python run_cumulative_coverage.py HumanEval/12 new_tests_h12_iter1.py
+Run Command for HumanEval/100:
+
+Bash
+
+python run_cumulative_coverage.py HumanEval/100 new_tests_h100_iter1.py
+View HTML Report: After running, you can view a detailed, line-by-line report by opening the htmlcov/index.html file in your browser.
+
+2.4 Step 3: Fault Detection (Assignment Part 3)
+This part of the assignment was a manual analysis described in the final PDF report. The process involved:
+
+Injecting a bug into the temporary temp_solution.py file (which is generated by the run_cumulative_coverage.py script).
+
+Re-running the tests from Step 2 (e.g., python run_cumulative_coverage.py HumanEval/12 new_tests_h12_iter1.py).
+
+Confirming that the new, LLM-generated tests failed, thus "catching" the bug.
+
+2.5 Analysis File Structure
+The following files are used for this analysis:
+
+/
+├── tasks.jsonl             # (Req) Baseline problems & tests
+├── completions.jsonl       # (Req) LLM-generated solutions (renamed)
+|
+├── run_coverage.py         # (Part 1) Script for baseline coverage
+├── run_cumulative_coverage.py # (Part 2) Script for iterative coverage
+|
+├── new_tests_h12_iter1.py  # (Part 2) LLM-generated tests for H-12
+├── new_tests_h100_iter1.py # (Part 2) LLM-generated tests for H-100
+|
+├── requirements.txt        # Python dependencies
+└── README.md               # This file
