@@ -109,4 +109,5 @@ This part of the assignment was a manual analysis described in the final PDF rep
 
 ### 2.5 Analysis File Structure
 
-/ ├── tasks.jsonl # (Req) Baseline problems & tests ├── completions.jsonl # (Req) LLM-generated solutions (renamed) | ├── run_coverage.py # (Part 1) Script for baseline coverage ├── run_cumulative_coverage.py # (Part 2) Script for iterative coverage | ├── new_tests_h12_iter1.py # (Part 2) LLM-generated tests for H-12 ├── new_tests_h100_iter1.py # (Part 2) LLM-generated tests for H-100 | ├── requirements.txt # Python dependencies └── README.md # This file
+<img width="717" height="287" alt="Screenshot 2025-11-09 at 12 09 23 AM" src="https://github.com/user-attachments/assets/5c4f25cb-eaef-46c3-8339-568c0b9edc97" />
+
