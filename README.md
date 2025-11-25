@@ -144,3 +144,27 @@ To run the specification-guided tests and generate the HTML coverage report:
 | :--- | :--- | :--- | :--- |
 | **HumanEval/12** | `is_palindrome` | 85.7% | **100%** |
 | **HumanEval/100** | `fib` | 81.8% | **100%** |
+
+HEVAL/
+│
+├── assertions.md               (+)  <-- Report with generated/revised assertions
+├── run_spec_coverage.sh        (+)  <-- Script to run Part 2 tests
+├── README.md                   (U)  <-- Updated with Part 3 instructions
+│
+├── src/                        (+)  <-- NEW FOLDER
+│   └── solutions.py            (+)  <-- Static code for is_palindrome and fib
+│
+├── tests/                      (+)  <-- NEW FOLDER
+│   └── test_spec_guided.py     (+)  <-- New spec-based tests
+│
+├── htmlcov/                         <-- Existing coverage folder (will update after running script)
+├── venv/                            <-- Existing virtual env
+│
+├── tasks.jsonl                      <-- Existing dataset
+├── completions.jsonl                <-- Existing LLM solutions
+├── run_coverage.py                  <-- Existing Part 1 script
+├── run_cumulative_coverage.py       <-- Existing Part 2 script
+├── new_tests_h12_iter1.py           <-- Existing Iteration 1 tests
+├── new_tests_h100_iter1.py          <-- Existing Iteration 1 tests
+│
+└── ... (other existing scripts like check.py, clean_results.py)
