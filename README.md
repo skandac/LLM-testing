@@ -111,3 +111,36 @@ This part of the assignment was a manual analysis described in the final PDF rep
 
 <img width="717" height="287" alt="Screenshot 2025-11-09 at 12 09 23 AM" src="https://github.com/user-attachments/assets/5c4f25cb-eaef-46c3-8339-568c0b9edc97" />
 
+## Part 3: Specification-Based Testing (Assignment 2)
+
+This section details the work for **Assignment 2**, where we used LLMs to generate formal assertions, manually refined them, and used them to create a robust test suite.
+
+### 3.1 Overview of Workflow
+1.  **Generate Specifications:** We prompted an LLM to generate formal `assert` statements for `is_palindrome` and `fib`.
+2.  **Evaluate & Refine:** We manually reviewed the assertions, calculating an accuracy rate and correcting logical errors (e.g., missing string normalization checks).
+3.  **Generate Tests:** We created a new test suite based strictly on the corrected assertions.
+
+### 3.2 Key Files
+* **`assertions.md`**: The report containing the raw LLM assertions, the manual correction table, and the accuracy rates.
+* **`src/solutions.py`**: The static source code for the two selected problems (`HumanEval/12` and `HumanEval/100`).
+* **`tests/test_spec_guided.py`**: The new test file containing tests derived directly from the corrected specifications.
+* **`run_spec_coverage.sh`**: The automation script to run these specific tests and generate a coverage report.
+
+### 3.3 How to Reproduce Results
+
+To run the specification-guided tests and generate the HTML coverage report:
+
+1.  **Ensure you are in the root directory.**
+2.  **Run the coverage script:**
+    ```bash
+    ./run_spec_coverage.sh
+    ```
+3.  **View Results:**
+    * Terminal output will show the pass/fail status.
+    * Open `htmlcov/index.html` in your browser to see the 100% line and branch coverage verification.
+
+### 3.4 Coverage Impact
+| Problem | Method | Old Coverage | New Coverage |
+| :--- | :--- | :--- | :--- |
+| **HumanEval/12** | `is_palindrome` | 85.7% | **100%** |
+| **HumanEval/100** | `fib` | 81.8% | **100%** |
