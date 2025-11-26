@@ -111,7 +111,7 @@ This part of the assignment was a manual analysis described in the final PDF rep
 
 <img width="717" height="287" alt="Screenshot 2025-11-09 at 12 09 23 AM" src="https://github.com/user-attachments/assets/5c4f25cb-eaef-46c3-8339-568c0b9edc97" />
 
-## Part 3: Specification-Based Testing (Assignment 2)
+## Part 3: Specification-Based Testing (Assignment 3)
 
 This section details the work for **Assignment 2**, where we used LLMs to generate formal assertions, manually refined them, and used them to create a robust test suite.
 
@@ -145,26 +145,12 @@ To run the specification-guided tests and generate the HTML coverage report:
 | **HumanEval/12** | `is_palindrome` | 85.7% | **100%** |
 | **HumanEval/100** | `fib` | 81.8% | **100%** |
 
-HEVAL/
-│
-├── assertions.md               (+)  <-- Report with generated/revised assertions
-├── run_spec_coverage.sh        (+)  <-- Script to run Part 2 tests
-├── README.md                   (U)  <-- Updated with Part 3 instructions
-│
-├── src/                        (+)  <-- NEW FOLDER
-│   └── solutions.py            (+)  <-- Static code for is_palindrome and fib
-│
-├── tests/                      (+)  <-- NEW FOLDER
-│   └── test_spec_guided.py     (+)  <-- New spec-based tests
-│
-├── htmlcov/                         <-- Existing coverage folder (will update after running script)
-├── venv/                            <-- Existing virtual env
-│
-├── tasks.jsonl                      <-- Existing dataset
-├── completions.jsonl                <-- Existing LLM solutions
-├── run_coverage.py                  <-- Existing Part 1 script
-├── run_cumulative_coverage.py       <-- Existing Part 2 script
+
 ├── new_tests_h12_iter1.py           <-- Existing Iteration 1 tests
 ├── new_tests_h100_iter1.py          <-- Existing Iteration 1 tests
 │
 └── ... (other existing scripts like check.py, clean_results.py)
+
+
+<img width="708" height="505" alt="Screenshot 2025-11-25 at 9 16 33 PM" src="https://github.com/user-attachments/assets/0e61a64a-eb44-4a93-a194-10655cff1c5c" />
+
